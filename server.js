@@ -1,6 +1,13 @@
+// server.js
+
 const express = require('express');
-const cors = require('cors'); 
-const bodyParser = require('body-parser');
+const http = require('http');
+const socketIO = require('socket.io');
+const cors = require('cors');
+const path = require('path');
+const fs = require('fs');
+const session = require('express-session');
+const authRoutes = require('./routes/auth');
 const sqlite3 = require('sqlite3').verbose();
 
 const app = express();
