@@ -26,6 +26,10 @@ db.run(`CREATE TABLE IF NOT EXISTS dados (
 app.post('/upload', (req, res) => {
   const data = req.body; // Espera-se que seja um array de objetos
 
+  if (!Array.isArray(data) || data.length === 0) {
+    return res.status(400).send('Nenhum dado fornecido para inserção.');
+  }
+
   const stmt = db.prepare(`INSERT INTO dados (nome, telefone, cidade, bairro, grupo_oracao, paroquia, capela) VALUES (?, ?, ?, ?, ?, ?, ?)`);
   
   let insertCount = 0; // Contador para inserções bem-sucedidas
